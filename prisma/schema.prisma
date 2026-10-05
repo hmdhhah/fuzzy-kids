@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id          Int         @id @default(autoincrement())
+  name        String
+  price       Decimal
+  available   Boolean     @default(true)
+  options     Json?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id              Int         @id @default(autoincrement())
+  orderNumber     String      @unique
+
+  customerName    String
+  customerEmail   String
+  customerPhone   String?
+
+  deliveryAddress String
+
+  status          OrderStatus @default(PENDING)
+  currency        String      @default("INR")
+  total           Decimal
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  items           OrderItem[]
+  payment         Payment?
+}
+
+model OrderItem {
+  id            Int      @id @default(autoincrement())
+
+  orderId       Int
+  productId     Int?
+
+  // Snapshot of product information
+  productName   String
+  productPrice  Decimal
+
+  quantity      Int
+  options       Json?
+
+  order         Order    @relation(fields: [orderId], references: [id])
+  product       Product? @relation(fields: [productId], references: [id])
+
+  createdAt     DateTime @default(now())
+}
+
+model Payment {
+  id                Int           @id @default(autoincrement())
+
+  orderId           Int           @unique
+  method            PaymentMethod
+  amount            Decimal
+  status            PaymentStatus @default(PENDING)
+
+  providerReference String?
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  order             Order         @relation(fields: [orderId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  COD
+  ONLINE
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}

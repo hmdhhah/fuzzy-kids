@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #f5eedb;
+  --ink: #3f281b;
+  --muted: #846a52;
+  --pink: #d94f7c;
+  --pink-dark: #b93763;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; font: inherit; }
+.storefront { min-height: 100vh; overflow: hidden; padding-bottom: 48px; }
+.site-header { background: var(--cream);z-index: 1; position: fixed;  width: 100vw; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.2%; border-bottom: 1px solid rgba(86, 62, 38, .14); }
+.wordmark { white-space: nowrap; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-style: italic; letter-spacing: -2.6px; color: #37251b; }
+.wordmark2 { white-space: nowrap; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-style: italic; letter-spacing: -2.6px; color: #000; }
+.wordmark2 span { color: var(--pink); }
+.wordmark2 b { color: #b23b5c; font-size: 32px; margin-left: 5px; }
+
+.wordmark span { color: var(--pink); }
+.wordmark b { color: #b23b5c; font-size: 32px; margin-left: 5px; }
+.main-nav { display: flex; align-items: center; gap: clamp(34px, 4.4vw, 82px); margin-left: 5%; font-size: 15px; color: #755b44; }
+.main-nav a, .header-actions button { transition: color .2s ease, transform .2s ease; }
+.main-nav a:hover { color: var(--pink); }
+.header-actions { display: flex; align-items: center; gap: 37px; }
+.header-actions button { border: 0; background: none; padding: 4px; cursor: pointer; }
+.header-actions button:hover { color: var(--pink); transform: translateY(-2px); }
+.header-actions svg { display: block; width: 31px; height: 31px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.hero { height: min(46vw, 940px); min-height: 650px; margin: 74px 2% 0; display: grid; grid-template-columns: 40% 60%; overflow: hidden; border-radius: 44px; }
+.hero-copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(55px, 4.5vw, 96px) clamp(48px, 4.4vw, 96px); color: white; background: #d54f7a; overflow: hidden; }
+.season-pill { z-index: 1; padding: 12px 23px; border-radius: 28px; background: rgba(255, 255, 255, .17); font-size: 18px; font-weight: 700; letter-spacing: 1.2px; white-space: nowrap; }
+.season-pill i { font-style: normal; padding: 0 4px; }
+.hero-copy h1 { z-index: 1; margin: 60px 0 24px; font: italic 400 clamp(57px, 5.2vw, 92px)/.99 Georgia, 'Times New Roman', serif; letter-spacing: -3px; }
+.hero-copy p { z-index: 1; margin: 0; color: #fbe5e8; font-size: clamp(17px, 1.38vw, 27px); font-weight: 600; line-height: 1.72; }
+.hero-actions { z-index: 1; display: flex; gap: 18px; margin-top: auto; padding-top: 40px; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-width: 196px; min-height: 82px; padding: 0 28px; border-radius: 27px; font-size: 22px; font-weight: 700; transition: transform .2s, background .2s; }
+.button:hover { transform: translateY(-3px); }
+.button-light { color: var(--pink); background: #fffdf7; }
+.button-light:hover { background: white; }
+.button-soft { background: rgba(255, 255, 255, .17); color: white; }
+.button-soft:hover { background: rgba(255, 255, 255, .25); }
+.decor-dot { position: absolute; display: block; border-radius: 50%; background: rgba(255, 255, 255, .13); }
+.decor-dot-top { width: 88px; height: 88px; top: 9%; right: 10%; }
+.decor-dot-bottom { width: 45px; height: 45px; bottom: 25%; right: 6%; background: rgba(157, 25, 72, .38); }
+.decor-ring { position: absolute; width: 430px; height: 430px; border: 3px solid rgba(255, 255, 255, .12); border-radius: 50%; left: -240px; bottom: -110px; }
+.hero-photo { position: relative; background: #987452 url('/images/plush-hero.png') center 48% / cover no-repeat; }
+.product-card { position: absolute; left: 4%; bottom: 5%; display: flex; align-items: center; gap: 18px; width: min(550px, 86%); min-height: 145px; padding: 18px 25px; border-radius: 29px; background: #fff9eb; box-shadow: 0 10px 40px rgba(53, 35, 19, .13); }
+.product-thumb { width: 72px; height: 72px; flex: 0 0 72px; display: flex; align-items: center; justify-content: center; gap: 1px; border-radius: 50%; background: #ebe5d9; overflow: hidden; font-size: 17px; }
+.product-thumb span:first-child { font-size: 20px; }
+.product-info { min-width: 0; }
+.product-info strong { display: block; margin-bottom: 6px; font-size: 18px; white-space: nowrap; }
+.rating { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.rating > span { color: var(--pink); font-size: 19px; letter-spacing: 1px; }
+.rating small { color: #795e47; font-size: 14px; }
+.price { margin-left: auto; color: var(--pink); font: italic 29px Georgia, serif; }
+.category-peek { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 50px 2% 0; }
+.category-peek a { display: flex; align-items: center; gap: 18px; min-height: 120px; padding: 22px 32px; border: 1px solid rgba(78, 57, 36, .1); border-radius: 28px; background: rgba(255, 255, 255, .22); color: #735a44; font-family: Georgia, serif; font-size: 21px; }
+.category-peek a span { font-size: 32px; }
+.help-button { position: fixed; right: 16px; bottom: 15px; z-index: 3; display: grid; width: 58px; height: 58px; place-items: center; border: 2px solid rgba(255, 255, 255, .35); border-radius: 50%; background: #282828; color: white; box-shadow: 0 2px 8px #0005; font: 31px Georgia, serif; }
+.addtobag{ background-color:#b23b5c ;  border-radius: 32px; font-weight:600; color: white;}
+@media (min-width: 1600px) { .hero { margin-top: 80px; } }
+@media (max-width: 1100px) {
+  .site-header { height: 92px; }
+  .main-nav { gap: 24px; font-size: 16px; margin-left: 0; }
+  .header-actions { gap: 18px; }
+  .hero { min-height: 600px; margin-top: 48px; grid-template-columns: 43% 57%; }
+  .hero-copy { padding: 52px 42px; }
+  .hero-copy h1 { margin-top: 48px; }
+  .button { min-width: 150px; min-height: 66px; font-size: 18px; }
+  .product-card { width: min(500px, 90%); min-height: 122px; gap: 11px; padding: 15px; }
+  .product-thumb { width: 58px; height: 58px; flex-basis: 58px; }
+  .rating { gap: 5px; }
+  .rating small { font-size: 12px; }
+  .rating > span { font-size: 15px; }
+}
+@media (max-width: 720px) {
+  .storefront { padding-bottom: 25px; }
+  .site-header { height: 76px; padding: 0 20px; }
+  .wordmark { font-size: 32px; }
+  .wordmark b { font-size: 24px; }
+  .main-nav { display: none; }
+  .header-actions { gap: 17px; }
+  .header-actions svg { width: 25px; height: 25px; }
+  .hero { display: flex; flex-direction: column; height: auto; min-height: 0; margin: 24px 14px 0; border-radius: 27px; }
+  .hero-copy { min-height: 500px; padding: 34px 28px; }
+  .season-pill { font-size: 13px; padding: 10px 15px; }
+  .decor-dot-top { width: 60px; height: 60px; }
+  .hero-copy h1 { margin: 48px 0 18px; font-size: clamp(54px, 13vw, 76px); }
+  .hero-copy p { font-size: 17px; }
+  .desktop-break { display: none; }
+  .hero-actions { padding-top: 28px; gap: 12px; }
+  .button { min-width: 0; min-height: 58px; padding: 0 20px; border-radius: 20px; font-size: 16px; }
+  .hero-photo { min-height: 370px; background-position: center; }
+  .product-card { left: 14px; right: 14px; bottom: 14px; width: auto; min-height: 88px; gap: 11px; padding: 12px; border-radius: 20px; }
+  .product-thumb { width: 52px; height: 52px; flex-basis: 52px; font-size: 13px; }
+  .product-info strong { font-size: 14px; margin-bottom: 4px; }
+  .rating { flex-wrap: wrap; gap: 3px 6px; }
+  .rating > span { font-size: 14px; }
+  .rating small { font-size: 11px; }
+  .price { font-size: 23px; }
+  .category-peek { display: flex; gap: 12px; margin: 20px 14px 0; overflow: hidden; }
+  .category-peek a { flex: 0 0 75%; min-height: 82px; padding: 16px; border-radius: 20px; font-size: 17px; }
+  .category-peek a span { font-size: 25px; }
+  .help-button { width: 48px; height: 48px; font-size: 26px; }
+}
