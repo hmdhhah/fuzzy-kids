@@ -1,5 +1,4 @@
 import ProductCard from '@/components/Products';
-import { Product } from '@/types/product';
 
 const SearchIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -15,16 +14,10 @@ const BagIcon = () => (
     <path d="M8 9V6a4 4 0 0 1 8 0v3M9 12c.5 1.2 1.5 1.8 3 1.8s2.5-.6 3-1.8" />
   </svg>
 );
-async function getProducts(): Promise<Product[]> {
-  return [
-    { id: '1', name: 'Minimalist Leather Wallet', price: 45.00, category: 'Accessories', image: '/images/wallet.jpg', description: 'Sleek design.' },
-    { id: '2', name: 'Anodized Aluminum Pen', price: 28.50, category: 'Stationery', image: '/images/pen.jpg', description: 'Smooth writing.' },
-    { id: '3', name: 'Canvas Everyday Backpack', price: 89.00, category: 'Bags', image: '/images/backpack.jpg', description: 'Durable materials.' },
-  ];
-}
+
 
 export default async function Home() {
-    const products = await getProducts();
+
 
   return (
 
@@ -162,9 +155,9 @@ export default async function Home() {
 
     <section>
   <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        
+          <ProductCard />
+    
       </div>
       
     </section>
