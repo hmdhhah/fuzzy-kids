@@ -20,7 +20,25 @@ export async function GET() {
 
     return NextResponse.json(
       { error: "Failed to fetch products" },
-      { status: 500 }
+      { status: 500 },
     );
   }
+}
+export async function POST(request: Request) {
+  const body = await request.json();
+
+  console.log(body, "body");
+  const saved1 = await prisma.product.create({
+    data: {
+      name: body.name,
+      price: body.price,
+      available: body.available,
+      image: body.image,
+      category: body.category,
+    },
+  });
+  return Response.json({
+    message: "Product created successfully",
+    data: saved1,
+  });
 }

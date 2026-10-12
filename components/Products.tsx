@@ -1,6 +1,6 @@
-
 "use client";
 
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -22,13 +22,11 @@ export default function ProductCard() {
   useEffect(() => {
     async function loadProducts() {
       try {
-        const response = await fetch("/api/products");
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-
-        const data: Product[] = await response.json();
+        const res = await axios({
+          url: "/api/products",
+          method:"GET",
+        });
+        const data: Product[] = res.data;
         setProducts(data);
       } catch (err) {
         console.error("Product loading error:", err);
@@ -36,6 +34,22 @@ export default function ProductCard() {
       } finally {
         setLoading(false);
       }
+
+      // try {
+      //   const response = await fetch("/api/products");
+
+      //   if (!response.ok) {
+      //     throw new Error("Failed to fetch products");
+      //   }
+
+      //   const data: Product[] = await response.json();
+      //   setProducts(data);
+      // } catch (err) {
+      //   console.error("Product loading error:", err);
+      //   setError("Unable to load products. Please try again.");
+      // } finally {
+      //   setLoading(false);
+      // }
     }
 
     loadProducts();
@@ -54,7 +68,7 @@ export default function ProductCard() {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-screen grid lg:grid-cols-3  md:grid-cols-2 ">
       {products.map((product) => (
         <div
           key={product.id}
@@ -78,9 +92,7 @@ export default function ProductCard() {
             )}
 
             <h3 className="text-sm font-semibold text-gray-900">
-              <Link href={`/products/${product.id}`}>
-                {product.name}
-              </Link>
+              <Link href={`/products/${product.id}`}>{product.name}</Link>
             </h3>
 
             <div className="mt-2 flex items-center justify-between gap-3">

@@ -14,8 +14,9 @@ model Product {
   options     Json?
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
-
   orderItems  OrderItem[]
+  category    String? 
+  image       String?
 }
 
 model Order {
