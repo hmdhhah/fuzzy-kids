@@ -1,5 +1,6 @@
 "use client";
 import AddProduct from "@/components/AddProduct";
+import ProductCard from "@/components/Products";
 import axios from "axios";
 import { useState } from "react";
 
@@ -22,7 +23,8 @@ export default function AdminPage() {
         </header>
 
         <section className="rounded-xl border bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-900">Products</h2>
+          <div className="flex justify-between items-center">
+                      <h2 className="text-xl font-semibold text-gray-900">Products</h2>
 
           {showForm ? (
             <AddProduct
@@ -56,7 +58,13 @@ export default function AdminPage() {
               Add New Product
             </button>
           )}
+          </div>
+
+           <section>
+          <ProductCard isAdmin={true}/>
         </section>
+        </section>
+       
       </div>
     </main>
   );

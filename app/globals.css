@@ -55,7 +55,7 @@ button { color: inherit; font: inherit; }
 .rating { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 .rating > span { color: var(--pink); font-size: 19px; letter-spacing: 1px; }
 .rating small { color: #795e47; font-size: 14px; }
-.price { margin-left: auto; color: var(--pink); font: italic 29px Georgia, serif; }
+.price {  color: var(--pink); font: italic 29px Georgia, serif; }
 .category-peek { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 50px 2% 0; }
 .category-peek a { display: flex; align-items: center; gap: 18px; min-height: 120px; padding: 22px 32px; border: 1px solid rgba(78, 57, 36, .1); border-radius: 28px; background: rgba(255, 255, 255, .22); color: #735a44; font-family: Georgia, serif; font-size: 21px; }
 .category-peek a span { font-size: 32px; }

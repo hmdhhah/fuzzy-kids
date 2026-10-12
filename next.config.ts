@@ -10,6 +10,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.0.55"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.google.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

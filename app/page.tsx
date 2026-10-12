@@ -74,7 +74,7 @@ export default async function Home() {
           role="img"
           aria-label="A colorful collection of cuddly plush toys"
         >
-          <div className="product-card">
+          {/* <div className="product-card">
             <div className="product-thumb">
               <span>☁</span>
               <span>🐻</span>
@@ -88,7 +88,7 @@ export default async function Home() {
               </div>
             </div>
             <span className="price">$34</span>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -153,13 +153,8 @@ export default async function Home() {
         ?
       </span>
 
-    <section>
-  <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-        
+    <section>        
           <ProductCard />
-    
-      </div>
-      
     </section>
     </main>
   );

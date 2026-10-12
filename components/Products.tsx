@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { SquarePen, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -10,21 +11,29 @@ type Product = {
   name: string;
   price: number;
   available: boolean;
-  image: string;
+  image?: string;
   category?: string;
 };
+type ProductCardProps = {
+  isAdmin?: boolean;
+  onEdit?: (product: Product) => void;
+  onDelete?: (id: string) => void;
+};
 
-export default function ProductCard() {
+export default function ProductCard({
+  isAdmin,
+  onEdit,
+  onDelete,
+}: ProductCardProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
   useEffect(() => {
     async function loadProducts() {
       try {
         const res = await axios({
           url: "/api/products",
-          method:"GET",
+          method: "GET",
         });
         const data: Product[] = res.data;
         setProducts(data);
@@ -68,7 +77,7 @@ export default function ProductCard() {
   }
 
   return (
-    <div className="p-4 w-screen grid lg:grid-cols-3  md:grid-cols-2 ">
+    <div className="p-4 grid grid-cols-3 ">
       {products.map((product) => (
         <div
           key={product.id}
@@ -76,7 +85,7 @@ export default function ProductCard() {
         >
           <div className="relative h-48 w-full overflow-hidden rounded-md bg-gray-100">
             <Image
-              src={product.image || "/images/placeholder.jpg"}
+              src={product.image || "/images/plush-hero.png"}
               alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -96,17 +105,25 @@ export default function ProductCard() {
             </h3>
 
             <div className="mt-2 flex items-center justify-between gap-3">
-              {/* <p className="text-sm font-bold text-gray-900">
-                ₹{product.price.toFixed(2)}
-              </p> */}
-
-              <button
-                type="button"
-                disabled={!product.available}
-                className="addtobag px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {product.available ? "Add to Bag" : "Out of Stock"}
-              </button>
+              <p className="price">₹{Number(product.price).toFixed(2)}</p>
+              {isAdmin ? (
+                <div>
+                  <button className="bg-[#b23b5c]   rounded-4xl font-light  px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer">
+                     <SquarePen />
+                  </button>
+                  <button className="bg-[#b23b5c]   rounded-4xl font-light  px-4 py-3 mx-2 text-sm disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer ">
+                    <Trash />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  disabled={!product.available}
+                  className="addtobag px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {product.available ? "Add to Bag" : "Out of Stock"}
+                </button>
+              )}
             </div>
           </div>
         </div>
