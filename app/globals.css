@@ -16,7 +16,7 @@ button { color: inherit; font: inherit; }
 .storefront { min-height: 100vh; overflow: hidden; padding-bottom: 48px; }
 .site-header { background: var(--cream);z-index: 1; position: fixed;  width: 100vw; height: 80px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.2%; border-bottom: 1px solid rgba(86, 62, 38, .14); }
 .wordmark { white-space: nowrap; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-style: italic; letter-spacing: -2.6px; color: #37251b; }
-.wordmark2 { white-space: nowrap; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-style: italic; letter-spacing: -2.6px; color: #000; }
+.wordmark2 { white-space: nowrap; font-family: Georgia,  'Times New Roman', serif; font-size: 30px; font-style: italic; letter-spacing: -2.6px; color: #000; }
 .wordmark2 span { color: var(--pink); }
 .wordmark2 b { color: #b23b5c; font-size: 32px; margin-left: 5px; }
 

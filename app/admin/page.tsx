@@ -1,5 +1,6 @@
 "use client";
 import AddProduct from "@/components/AddProduct";
+import AdminProductList from "@/components/AdminProductList";
 import ProductCard from "@/components/Products";
 import axios from "axios";
 import { useState } from "react";
@@ -23,48 +24,34 @@ export default function AdminPage() {
         </header>
 
         <section className="rounded-xl border bg-white p-6 shadow-sm">
-          <div className="flex justify-between items-center">
-                      <h2 className="text-xl font-semibold text-gray-900">Products</h2>
+          <div className="">
+            <h2 className="text-xl font-semibold text-gray-900">Products</h2>
 
-          {showForm ? (
-            <AddProduct
-              onAddProduct={async (product) => {
-                console.log(product, "product");
-                const res = await axios({
-                  url: "/api/products",
-                  method: "POST",
-                  data: product,
-                });
-
-                // const response = await fetch("/api/products", {
-                //   method: "POST",
-                //   headers: { "Content-Type": "application/json" },
-                //   body: JSON.stringify(product),
-                // });
-
-                // if (!response.ok) {
-                //   throw new Error("Could not save product");
-                // }
-              }}
-            />
-          ) : (
-            <button
-              type="button"
-              className="mt-5 rounded-lg bg-pink-600 px-5 py-3 font-medium text-white hover:bg-pink-700"
-              onClick={() => {
-                setShowForm(true);
-              }}
-            >
-              Add New Product
-            </button>
-          )}
+            {showForm ? (
+              <AddProduct
+                onAddProduct={async (product) => {
+                  console.log(product, "product");
+                  const res = await axios({
+                    url: "/api/products",
+                    method: "POST",
+                    data: product,
+                  });
+                }}
+              />
+            ) : (
+              <button
+                type="button"
+                className="mt-5 rounded-lg bg-pink-600 px-5 py-3 font-medium text-white hover:bg-pink-700"
+                onClick={() => {
+                  setShowForm(true);
+                }}
+              >
+                Add New Product
+              </button>
+            )}
           </div>
-
-           <section>
-          <ProductCard isAdmin={true}/>
         </section>
-        </section>
-       
+        <AdminProductList />
       </div>
     </main>
   );
