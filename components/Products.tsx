@@ -64,11 +64,11 @@ export default function ProductCard({
   return (
     <div className="p-4 grid grid-cols-3 ">
       {products.map((product) => (
-        <Link key={product.id} href={`/products/${product.id}`}>
-          <div
-            key={product.id}
-            className="group relative mx-2 mt-8 rounded-[20px] border border-gray-200 bg-[#FBF5E6] p-4 shadow-sm transition-shadow hover:shadow-md"
-          >
+        <div
+          key={product.id}
+          className="group relative mx-2 mt-8 rounded-[20px] border border-gray-200 bg-[#FBF5E6] p-4 shadow-sm transition-shadow hover:shadow-md"
+        >
+          <Link key={product.id} href={`/products/${product.id}`}>
             <div className="relative h-48 w-full overflow-hidden rounded-md bg-gray-100">
               <Image
                 src={product.image || "/images/plush-hero.png"}
@@ -79,45 +79,45 @@ export default function ProductCard({
                 className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
             </div>
+          </Link>
 
-            <div className="mt-4 flex flex-col gap-1">
-              {product.category && (
-                <p className="text-xs uppercase tracking-wider text-gray-500">
-                  {product.category}
-                </p>
-              )}
-
+          <div className="mt-4 flex flex-col gap-1">
+            {product.category && (
+              <p className="text-xs uppercase tracking-wider text-gray-500">
+                {product.category}
+              </p>
+            )}
+            <Link key={product.id} href={`/products/${product.id}`}>
               <h3 className="text-sm font-semibold text-gray-900">
                 <p>{product.name}</p>
               </h3>
-
-              <div className="mt-2 flex items-center justify-between gap-3">
-                <p className="price">₹{Number(product.price).toFixed(2)}</p>
-                {isAdmin ? (
-                  <div>
-                    <button
-                      className="bg-[#b23b5c]   rounded-4xl font-light  px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
-                      onClick={() => setEditingId(product.id)}
-                    >
-                      <SquarePen />
-                    </button>
-                    <button className="bg-[#b23b5c]   rounded-4xl font-light  px-4 py-3 mx-2 text-sm disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer ">
-                      <Trash />
-                    </button>
-                  </div>
-                ) : (
+            </Link>
+            <div className="mt-2 flex items-center justify-between gap-3">
+              <p className="price">₹{Number(product.price).toFixed(2)}</p>
+              {isAdmin ? (
+                <div>
                   <button
-                    type="button"
-                    disabled={!product.available}
-                    className="addtobag px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+                    className="bg-[#b23b5c]   rounded-4xl font-light  px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
+                    onClick={() => setEditingId(product.id)}
                   >
-                    {product.available ? "Add to Bag" : "Out of Stock"}
+                    <SquarePen />
                   </button>
-                )}
-              </div>
+                  <button className="bg-[#b23b5c]   rounded-4xl font-light  px-4 py-3 mx-2 text-sm disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer ">
+                    <Trash />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  disabled={!product.available}
+                  className="addtobag px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {product.available ? "Add to Bag" : "Out of Stock"}
+                </button>
+              )}
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
